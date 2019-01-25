@@ -4,7 +4,7 @@ using System.Linq;
 using TechTest.Parsers;
 
 namespace TechTest.Services
-{   
+{
     public class DataAccess : IDataAccess
     {
         private readonly IEnumerable<DistributedPartnerContract> _distributionPartners;
@@ -14,11 +14,8 @@ namespace TechTest.Services
             IDistributionPartnerContractsParser distributionPartnerContractsParser,
             IMusicContractsParser musicContractsParser)
         {
-            var dataPath = "/Users/craiggoddenpayne/code/TechTest/TechTest/data";
-            //var dataPath = Directory.GetCurrentDirectory() + "/data";
-            
-            _distributionPartners = distributionPartnerContractsParser.Parse(dataPath + "/distribution-partner-contracts.txt");
-            _musicContracts = musicContractsParser.Parse(dataPath + "/music-contracts.txt");
+            _distributionPartners = distributionPartnerContractsParser.Parse(FileHelpers.GetApplicationPath("/data/distribution-partner-contracts.txt"));
+            _musicContracts = musicContractsParser.Parse(FileHelpers.GetApplicationPath("/data/music-contracts.txt"));
         }
         
         public IEnumerable<MusicContractResult> Query(string deliveryPartner, DateTime effectiveDate)
