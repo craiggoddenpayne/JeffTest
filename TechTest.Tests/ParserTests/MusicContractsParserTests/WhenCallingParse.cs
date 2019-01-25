@@ -45,9 +45,10 @@ Monkey Claw|Christmas Special|streaming|25st Dec 2012|31st Dec 2012");
         }
         
         [Test]
-        public void ItShouldMapUsages()
+        public void ItShouldMapUsage()
         {
-            Assert.That(_results.ElementAt(0).Usages, Is.EqualTo("digital download, streaming"));
+            Assert.That(_results.ElementAt(0).Usages.ElementAt(0), Is.EqualTo("digital download"));
+            Assert.That(_results.ElementAt(0).Usages.ElementAt(1), Is.EqualTo("streaming"));
         }
         
         [Test]

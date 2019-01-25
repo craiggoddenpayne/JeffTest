@@ -1,0 +1,1 @@
+dotnet test ./TechTest.Tests/TechTest.Tests.csproj
