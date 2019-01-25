@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TechTest.Parsers;
 
 namespace TechTest.Services
 {
     public class DataAccess : IDataAccess
     {
-        private IEnumerable<DistributedPartnerContract> _distributionPartners;
-        private IEnumerable<MusicContract> _musicContracts;
+        private readonly IEnumerable<DistributedPartnerContract> _distributionPartners;
+        private readonly IEnumerable<MusicContract> _musicContracts;
 
         public DataAccess(IDistributionPartnerContractsParser distributionPartnerContractsParser,
             IMusicContractsParser musicContractsParser)
@@ -18,9 +20,13 @@ namespace TechTest.Services
             _musicContracts = musicContractsParser.Parse("/music-contracts.txt");
         }
         
-        public IEnumerable<MusicContract> GetMusicContractsFor()
+        public IEnumerable<MusicContract> Query(string deliveryPartner, DateTime effectiveDate)
         {
-            return null;
+            var deliveryPartners = _distributionPartners.Where(x => x.Partner == deliveryPartner);
+            return _musicContracts
+                .Where(x => deliveryPartners.Any(y => y.Usage == x.Usages))
+                .Where(x => effectiveDate > x.StartDate)
+                .Where(x => effectiveDate < x.EndDate);
         }
     }
 }

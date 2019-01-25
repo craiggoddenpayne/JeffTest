@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using TechTest.Parsers;
@@ -52,19 +53,19 @@ Monkey Claw|Christmas Special|streaming|25st Dec 2012|31st Dec 2012");
         [Test]
         public void ItShouldMapStartDate()
         {
-            Assert.That(_results.ElementAt(0).StartDate, Is.EqualTo("1st Feb 2012"));
+            Assert.That(_results.ElementAt(0).StartDate, Is.EqualTo(new DateTime(2012, 2, 1)));
         }
         
         [Test]
         public void ItShouldMapEndDate()
         {
-            Assert.That(_results.ElementAt(0).EndDate, Is.EqualTo(""));
+            Assert.That(_results.ElementAt(0).EndDate, Is.EqualTo(DateTime.MaxValue));
         }
 
         [Test]
         public void ItShouldMapEndDateWhenNotMissing()
         {
-            Assert.That(_results.ElementAt(6).EndDate, Is.EqualTo("31st Dec 2012"));
+            Assert.That(_results.ElementAt(6).EndDate, Is.EqualTo(new DateTime(2012, 12, 31)));
         }
 
         [Test]
