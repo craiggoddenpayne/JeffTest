@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query</title>
+    <link href="https://cdn.dittomusic.com/css/dittomusic-framework.css" rel="stylesheet" />
+    <link href="https://cdn.dittomusic.com/css/pattern-library.css" rel="stylesheet" />
+    <link href="https://cdn.dittomusic.com/css/prism.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="container">
+    <section>
+    <div class="field-container">
+        <label for="delivery-partner">Delivery Partner</label>
+        <input type="text" name="delivery-partner" id="delivery-partner" value="ITunes">
+    </div>
+
+    <div class="field-container">
+        <label for="effective-date">Delivery Partner</label>
+        <input type="text" name="effective-date" id="effective-date" value="2012-01-01">
+    </div>
+
+    <div class="field-container">
+        <input type="button" id="submit-button" class="button" value="query" />
+    </div>
+    </section>
+</div>
+</body>
+<script type="text/javascript">
+    
+    document.getElementById("submit-button").onclick = function() {
+        var partner = document.getElementById("delivery-partner").value;
+        var date = document.getElementById("effective-date").value;
+        var result = httpGet("http://localhost:5000/?deliveryPartner=" + partner + "&effectiveDate=" + date);
+        console.log(result);
+    };
+    
+    function httpGet(url)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url, false );
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+</script>
+</body>
+</html>
