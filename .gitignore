@@ -320,4 +320,4 @@ crash.log
 sales-import-api.sln
 output/*
 coverage/
-src/SalesImportApi.Tests/coverage.xml
+src/SalesImportApi.Tests/coverage.xml 
