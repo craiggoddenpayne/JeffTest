@@ -6,6 +6,6 @@ namespace TechTest.Services
 {
     public interface IDataAccess
     {
-        IEnumerable<MusicContract> Query(string deliveryPartner, DateTime effectiveDate);
+        IEnumerable<MusicContractResult> Query(string deliveryPartner, DateTime effectiveDate);
     }
 }

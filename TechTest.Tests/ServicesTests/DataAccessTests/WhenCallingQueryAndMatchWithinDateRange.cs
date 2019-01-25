@@ -9,7 +9,7 @@ namespace TechTest.Tests.ServicesTests.DataAccessTests
 {
     public class WhenCallingQueryAndMatchWithinDateRange : WhenTestingDataAccess
     {
-        private IEnumerable<MusicContract> _result;
+        private IEnumerable<MusicContractResult> _result;
 
         [SetUp]
         public void When()
@@ -21,7 +21,7 @@ namespace TechTest.Tests.ServicesTests.DataAccessTests
         [Test]
         public void ItShouldJoinMatchAndReturnUsages()
         {
-            Assert.That(_result.ElementAt(0).Usages, Is.EqualTo("stream"));
+            Assert.That(_result.ElementAt(0).Usage, Is.EqualTo("stream"));
         }
         
         [Test]

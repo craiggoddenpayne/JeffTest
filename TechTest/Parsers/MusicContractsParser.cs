@@ -26,7 +26,7 @@ namespace TechTest.Parsers
                 {
                     Artist = columns.ElementAt(0),
                     Title = columns.ElementAt(1),
-                    Usages = columns.ElementAt(2),
+                    Usages = columns.ElementAt(2).Split(","),
                     StartDate = ConvertDate(columns.ElementAt(3)),
                     EndDate = ConvertDate(columns.ElementAt(4))
                 };

@@ -31,7 +31,7 @@ namespace TechTest.Tests.ServicesTests.DataAccessTests
                 {
                     new MusicContract()
                     {
-                        Usages = "stream",
+                        Usages = new[]{"stream","download"},
                         Artist = "artist",
                         EndDate = new DateTime(2001,1,1),
                         StartDate = new DateTime(1999,1,1),

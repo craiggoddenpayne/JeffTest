@@ -9,7 +9,7 @@ namespace TechTest.Tests.ServicesTests.DataAccessTests
 {
     public class WhenCallingQueryAndNoMatchWithinDateRange : WhenTestingDataAccess
     {
-        private IEnumerable<MusicContract> _result;
+        private IEnumerable<MusicContractResult> _result;
 
         [SetUp]
         public void When()
@@ -31,7 +31,7 @@ namespace TechTest.Tests.ServicesTests.DataAccessTests
                 {
                     new MusicContract()
                     {
-                        Usages = "stream",
+                        Usages = new[] {"stream", "download"},
                         Artist = "artist",
                         EndDate = new DateTime(2001,1,1),
                         StartDate = new DateTime(2000,6,1),

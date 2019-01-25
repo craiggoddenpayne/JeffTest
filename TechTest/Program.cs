@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using TechTest.Services;
 
 namespace TechTest
@@ -10,19 +12,23 @@ namespace TechTest
             var services = new ServiceCollection();
             Ioc.Initialise(services);
             var dataAccess =  Ioc.ServiceProvider.GetService<IDataAccess>();
+            
+            Console.WriteLine("Enter a delivery partner...");
+            var deliveryPartner = Console.ReadLine();
+            
+            Console.WriteLine("Enter an effective date year...");
+            var year = int.Parse(Console.ReadLine());
+            
+            Console.WriteLine("Enter an effective date month...");
+            var month = int.Parse(Console.ReadLine());
+            
+            Console.WriteLine("Enter an effective date day...");
+            var day = int.Parse(Console.ReadLine());
+
+            var result = dataAccess.Query(deliveryPartner, new DateTime(year, month, day));
+            
+            Console.WriteLine(JsonConvert.SerializeObject(result));
+            Console.ReadKey();
         }
     }
-//    public class Program
-//    {
-//        public static void Main(string[] args)
-//        {
-//            BuildWebHost(args).Run();
-//        }
-//
-//        private static IWebHost BuildWebHost(string[] args) =>
-//            WebHost.CreateDefaultBuilder(args)
-//                .UseStartup<Startup>()
-//                .UseContentRoot(Directory.GetCurrentDirectory())
-//                .Build();
-//    }
 }
