@@ -4,26 +4,29 @@ using System.Linq;
 
 namespace TechTest.Parsers
 {
-    public class DistributionPartnerContractsParser : IDistributionPartnerContractsParser
+    public class MusicContractsParser : IMusicContractsParser
     {
         private readonly IFileLoader _fileLoader;
 
-        public DistributionPartnerContractsParser(IFileLoader fileLoader)
+        public MusicContractsParser(IFileLoader fileLoader)
         {
             _fileLoader = fileLoader;
         }
 
-        public IEnumerable<DistributedPartnerContract> Parse(string filename)
+        public IEnumerable<MusicContract> Parse(string filename)
         {
             var data = _fileLoader.Fetch(filename);
             var rows = data.Split(Environment.NewLine);
             foreach (var row in rows.Skip(1))
             {
                 var columns = row.Split("|");
-                yield return new DistributedPartnerContract
+                yield return new MusicContract()
                 {
-                    Partner = columns.ElementAt(0),
-                    Usage = columns.ElementAt(1)
+                    Artist = columns.ElementAt(0),
+                    Title = columns.ElementAt(1),
+                    Usages = columns.ElementAt(2),
+                    StartDate = columns.ElementAt(3),
+                    EndDate = columns.ElementAt(4)
                 };
             }
         }

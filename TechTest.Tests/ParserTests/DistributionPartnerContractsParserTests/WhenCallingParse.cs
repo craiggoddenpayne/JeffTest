@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Moq;
 using NUnit.Framework;
 using TechTest.Parsers;
 
@@ -18,17 +19,12 @@ namespace TechTest.Tests.ParserTests.DistributionPartnerContractsParserTests
 
             FileLoader
                 .Setup(x => x.Fetch(_filename))
-                .Returns(@"Partner|Usage
-                           ITunes|digital download
-                           YouTube|streaming");
+                .Returns(
+@"Partner|Usage
+ITunes|digital download
+YouTube|streaming");
             
             _results = DistributionPartnerContractsParser.Parse(_filename);
-        }
-
-        [Test]
-        public void ItShouldFetchDataUsingFileLoader()
-        {
-            FileLoader.Verify(x => x.Fetch(_filename));
         }
 
         [Test]
