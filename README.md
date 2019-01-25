@@ -26,3 +26,18 @@ test.sh
 ```
 
 Again these have only been tested on macos, but should work on windows
+
+
+### using the web host
+
+You can query the test project as an api. You can send a request (when the service is running) to http://localhost:5000/ passing params, such as:
+
+```
+http://localhost:5000/?deliveryPartner=iTunes&effectiveDate=2012-01-01
+```
+
+e.g. 
+
+```
+curl http://localhost:5000/\?deliveryPartner\=iTunes\&effectiveDate\=2012-01-01
+```

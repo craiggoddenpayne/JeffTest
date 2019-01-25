@@ -6,4 +6,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
     </ItemGroup>
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Query.cshtml" />
+    </ItemGroup>
 </Project>
